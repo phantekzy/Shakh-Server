@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
+        "target": "ESNext",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
+        "rootDir": "./",
+        "outDir": "./dist",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./dist",
-        "rootDir": "./",
-        "sourceMap": true
+        "resolveJsonModule": true
     },
     "include": [
         "**/*.ts"

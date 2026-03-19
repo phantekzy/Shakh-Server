@@ -1,27 +1,20 @@
 {
-  "name": "shakh",
-  "type": "module",
+  "name": "arc-framework",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "High-performance strictly-typed HTTP orchestration engine",
+  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/phantekzy/Shakh-Server.git"
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/phantekzy/Shakh-Server/issues"
-  },
-  "homepage": "https://github.com/phantekzy/Shakh-Server#readme",
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.10",
-    "jsonwebtoken": "^9.0.3",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.11.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.3.3"
   }
 }
