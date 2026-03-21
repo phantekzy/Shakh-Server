@@ -12,6 +12,10 @@ export function enhanceResponse(res: ServerResponse): ArcResponse {
     arcRes.statusCode = code;
     return arcRes;
   };
+  arcRes.json = (data: any) => {
+    arcRes.setHeader("content-type", "application/json");
+    arcRes.end(JSON.stringify(data));
+  };
 
   return arcRes;
 }
