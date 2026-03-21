@@ -13,9 +13,12 @@ export function enhanceResponse(res: ServerResponse): ArcResponse {
     return arcRes;
   };
   arcRes.json = (data: any) => {
-    arcRes.setHeader("content-type", "application/json");
+    arcRes.setHeader("Content-Type", "application/json");
     arcRes.end(JSON.stringify(data));
   };
-
+  arcRes.send = (data: string) => {
+    arcRes.setHeader("Content-Type", "text/plain");
+    arcRes.end(data);
+  };
   return arcRes;
 }
