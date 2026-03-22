@@ -7,4 +7,11 @@ export type Middleware = (
   next: (err?: any) => void,
 ) => void | Promise<void>;
 
-export class Router {}
+export class Router {
+  private routes: Array<{
+    method: string;
+    pattern: RegExp;
+    keys: string[];
+    handlers: Middleware[];
+  }> = [];
+}
