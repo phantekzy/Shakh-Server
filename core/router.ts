@@ -15,7 +15,8 @@ export class Router {
     handlers: Middleware[];
   }> = [];
 
-private add(method:string , path : string , handlers : Middleware[]){
-        const keys : string[] = [];
-    }
+  private add(method: string, path: string, handlers: Middleware[]) {
+    const keys: string[] = [];
+    const pattern = new RegExp();
+  }
 }
