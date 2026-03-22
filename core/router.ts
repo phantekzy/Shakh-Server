@@ -14,4 +14,8 @@ export class Router {
     keys: string[];
     handlers: Middleware[];
   }> = [];
+
+private add(method:string , path : string , handlers : Middleware[]){
+        const keys : string[] = [];
+    }
 }
