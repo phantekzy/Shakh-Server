@@ -1,2 +1,1 @@
 Arc Framework
-# Collaborative Contribution
