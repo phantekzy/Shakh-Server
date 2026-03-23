@@ -30,4 +30,7 @@ export class Router {
   get(path: string, ...h: Middleware[]) {
     this.add("GET", path, h);
   }
+  post(path: string, ...h: Middleware[]) {
+    this.add("POST", path, h);
+  }
 }
