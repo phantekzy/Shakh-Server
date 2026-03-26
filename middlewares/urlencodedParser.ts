@@ -1,3 +1,4 @@
+import { HttpError } from "../core/error";
 import { Middleware } from "../core/router";
 
 const MAX_PAYLOAD_SIZE = 1048576;
@@ -11,5 +12,9 @@ export const urlencodedParser: Middleware = (req, res, next) => {
 
   req.on("data", (chunk: Buffer) => {
     byteCount += chunk.length;
+    if (byteCount > MAX_PAYLOAD_SIZE) {
+      req.removeAllListeners("data");
+      return new HttpError(413, "Payload Too Large");
+    }
   });
 };
