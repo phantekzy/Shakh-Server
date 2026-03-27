@@ -26,6 +26,12 @@ export const urlencodedParser: Middleware = (req, res, next) => {
       for (const pair of pairs) {
         if (!pairs) continue;
         const [key, value] = pair.split("=");
+        if (key) {
+          const decodedKey = decodeURIComponent(key.replace(/\+/g, " "));
+          const decodedValue = decodeURIComponent(
+            (value || "").replace(/\+/g, " "),
+          );
+        }
       }
     } catch (error) {}
   });
