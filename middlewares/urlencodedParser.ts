@@ -17,4 +17,12 @@ export const urlencodedParser: Middleware = (req, res, next) => {
     }
     body += chunk.toString();
   });
+
+req.on('end',() =>{
+        try {
+           const parsedBody : Record<string,string> = {} 
+        } catch (error) {
+            
+        } 
+    })
 };
