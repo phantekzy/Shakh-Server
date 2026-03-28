@@ -23,5 +23,10 @@ export const rateLimiter = (limit: number, windowMs: number): Middleware => {
       store.set(ip, { count: 1, resetTime: now + windowMs });
       return next();
     }
+
+    if (record.count >= limit) {
+      res.status(429).json({ error: "Too Many Requests" });
+      return;
+    }
   };
 };
