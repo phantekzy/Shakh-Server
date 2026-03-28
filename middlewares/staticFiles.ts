@@ -1,3 +1,4 @@
+import { Middleware } from "../core/router";
 
 const MIME_TYPES : Record<string , string> = {
     '.html': 'text/html',
@@ -13,4 +14,6 @@ const MIME_TYPES : Record<string , string> = {
 
 
 
-export const staticFiles = () => {};
+export const staticFiles = (rootPath : string , prefix : string = '/static') : Middleware => {
+    return (req,res,next) =>{}
+};
