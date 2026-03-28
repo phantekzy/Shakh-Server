@@ -12,5 +12,11 @@ export const rateLimiter = (limit: number, windowMs: number): Middleware => {
     const ip = req.socket.remoteAddress || "unknown";
     const now = Date.now();
     const record = store.get(ip);
+
+    if (store.size > 10000) {
+      for (const [key, val] of store.entries()) {
+        if (now > val.resetTime) store.delete(key);
+      }
+    }
   };
 };
