@@ -18,5 +18,10 @@ export const rateLimiter = (limit: number, windowMs: number): Middleware => {
         if (now > val.resetTime) store.delete(key);
       }
     }
+
+    if (!record || now > record.resetTime) {
+      store.set(ip, { count: 1, resetTime: now + windowMs });
+      return next();
+    }
   };
 };
