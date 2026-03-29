@@ -22,5 +22,9 @@ export const staticFiles = (
       return next();
     }
     const urlPath = req.url?.split("?")[0] || "/";
+    if (!urlPath.startsWith(prefix)) {
+      return next();
+    }
+    const relativePath = urlPath.slice(prefix.length);
   };
 };
