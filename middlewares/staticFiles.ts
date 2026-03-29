@@ -22,4 +22,5 @@ export const staticFiles = (
       return next();
     }
   };
+  const urlPath = req.url?.split("?")[0] || "/";
 };
