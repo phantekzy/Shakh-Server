@@ -33,6 +33,10 @@ export const staticFiles = (
     if (!filePath.startsWith(absoluteRoot)) {
       return next(new HttpError(403, "Forbidden"));
     }
-    fs.stat(filePath, (err, stats) => {});
+    fs.stat(filePath, (err, stats) => {
+      if (err || !stats.isFile()) {
+        return next();
+      }
+    });
   };
 };
