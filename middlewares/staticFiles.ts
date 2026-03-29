@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 import { Middleware } from "../core/router";
 import { HttpError } from "../core/error";
@@ -31,7 +32,7 @@ export const staticFiles = (
 
     if (!filePath.startsWith(absoluteRoot)) {
       return next(new HttpError(403, "Forbidden"));
-      return next();
     }
+    fs.stat(filePath, (err, stats) => {});
   };
 };
