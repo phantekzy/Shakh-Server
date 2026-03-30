@@ -48,6 +48,8 @@ export const staticFiles = (
         res.end();
         return;
       }
+
+      const stream = fs.createReadStream(filePath);
     });
   };
 };
