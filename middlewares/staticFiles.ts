@@ -39,6 +39,9 @@ export const staticFiles = (
       }
       const ext = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[ext] || "application/octet-stream";
+
+      res.setHeader("Content-Type", contentType);
+      res.setHeader("Content-Length", stats.size);
     });
   };
 };
