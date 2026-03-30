@@ -42,6 +42,12 @@ export const staticFiles = (
 
       res.setHeader("Content-Type", contentType);
       res.setHeader("Content-Length", stats.size);
+
+      if (req.method === "HEAD") {
+        res.statusCode = 200;
+        res.end();
+        return;
+      }
     });
   };
 };
