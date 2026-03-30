@@ -19,24 +19,30 @@ export const staticFiles = (
   prefix: string = "/static",
 ): Middleware => {
   const absoluteRoot = path.resolve(rootPath);
+
   return (req, res, next) => {
     if (req.method !== "GET" && req.method !== "HEAD") {
       return next();
     }
+
     const urlPath = req.url?.split("?")[0] || "/";
+
     if (!urlPath.startsWith(prefix)) {
       return next();
     }
+
     const relativePath = urlPath.slice(prefix.length);
     const filePath = path.join(absoluteRoot, relativePath);
 
     if (!filePath.startsWith(absoluteRoot)) {
       return next(new HttpError(403, "Forbidden"));
     }
+
     fs.stat(filePath, (err, stats) => {
-      if (err || !stats.isFile) {
+      if (err || !stats.isFile()) {
         return next();
       }
+
       const ext = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[ext] || "application/octet-stream";
 
@@ -50,11 +56,14 @@ export const staticFiles = (
       }
 
       const stream = fs.createReadStream(filePath);
+
       stream.on("error", () => {
         if (!res.headersSent) {
-          next(new HttpError(500, "Error Reading files"));
+          next(new HttpError(500, "Error reading file"));
         }
       });
+
+      stream.pipe(res);
     });
   };
 };
