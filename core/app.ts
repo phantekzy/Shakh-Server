@@ -17,5 +17,9 @@ export class Arc {
     server.listen(port, cb);
   }
 
-  private async handle(req: http.IncomingMessage, res: http.ServerResponse) {}
+  private async handle(req: http.IncomingMessage, res: http.ServerResponse) {
+    const arcReq = req as ArcRequest;
+    const arcRes = enhanceResponse(res);
+    const { path, query } = parseQuery(req.url || "/");
+  }
 }
