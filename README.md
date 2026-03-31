@@ -1,44 +1,55 @@
-# Arc Web Framework
+# Arc 
 
-Arc is a framework built from scratch using Node.js and TypeScript. I created this to have total control over the request lifecycle and to remove the "magic" found in heavy libraries like Express. It is designed to be a transparent, fast, and secure engine for building APIs.
+Arc is a framework for Node.js created to provide a transparent and predictable engine for building APIs and serving web content. Built from scratch using TypeScript and the native Node.js http module, Arc eliminates the "magic" found in larger libraries, giving developers total control over the request-response lifecycle.
 
-## Core Features
+## Project Structure
 
-### 1. Unified Middleware Pipeline
-The framework uses a recursive next() function to manage the execution of code.
-- Every request moves through a single "pipe" that contains global middlewares and the final route handler.
-- By using async/await, I ensure that one task (like checking a password) is 100% finished before the next one starts.
-- This design prevents race conditions where multiple handlers try to send a response at the same time.
+Arc is designed with a clear separation of concerns:
+- core/: The framework engine (Router, Request, Response, and Error handling).
+- middlewares/: Built-in plugins for security, data parsing, and logging.
+- handlers/ & routes/: Modular patterns for organizing application logic.
+- utils/: Helper functions for token management and core utilities.
 
-### 2. Regex-Based Routing
-I built a custom router that doesn't just look for exact text matches.
-- It converts path patterns (like /users/:id) into Regular Expressions.
-- It is smart enough to handle IDs that contain numbers, hyphens, or dots (like maini-77).
-- It supports optional trailing slashes so both /home and /home/ work correctly.
+## Core Architecture
 
-### 3. Built-in Security and Parsers
-I wrote custom handlers to process incoming data safely:
-- JSON Parser: Automatically reads JSON bodies but includes a 1MB limit to protect the server's memory from "JSON Bomb" attacks.
-- URL-Encoded Parser: Processes standard HTML form data, decodes URI components, and handles plus signs (+) as spaces.
-- CORS: A built-in system to control which websites are allowed to talk to the API.
+### 1. Regex-Based Routing
+The routing system converts path patterns into regular expressions.
+- Dynamic segments (e.g., :id) are automatically extracted and attached to the request object.
+- It supports optional trailing slashes and complex path segments.
+- Located in core/router.ts.
 
-### 4. Professional Request/Response Wrappers
-I extended the basic Node.js tools into ArcRequest and ArcResponse.
-- This gives me a clean way to write code using commands like res.status(200).json().
-- It simplifies handling headers, query strings, and URL parameters.
+### 2. Recursive Middleware Pipeline
+The execution flow is managed by a recursive next() function within core/app.ts.
+- This ensures a strict, linear execution of tasks.
+- Global middlewares and route-specific handlers run in a predictable chain.
+- The use of async/await prevents race conditions during the request flow.
 
-### 5. Global Error Boundary
-A safety net is built into the core engine.
-- Every step of the process is wrapped in a try/catch block.
-- If a bug happens in a specific route, the server catches the error, tells the user something went wrong, and stays online for everyone else.
-- It is environment-aware, showing full error details during development but hiding them in production.
+### 3. Comprehensive Built-in Middlewares
+Arc comes pre-loaded with essential tools for production environments:
+- jsonParser & urlencodedParser: Safe data parsing with 1MB payload limits.
+- staticFiles: Serves assets like images, CSS, and HTML from the disk.
+- jwtAuth & cookieParser: Handles secure authentication and session data.
+- rateLimiter: Prevents API abuse by limiting request frequency.
+- cors & logger: Manages cross-origin security and request visibility.
+
+### 4. Global Error Boundary
+A centralized safety net in core/error.ts catches asynchronous crashes.
+- Prevents a single bug from taking down the entire server.
+- Provides environment-aware error reporting.
+
+## How to use (Development)
+
+1. Define your routes in the routes/ directory.
+2. Create logic in the handlers/ directory.
+3. Initialize the Arc app in server.ts.
+4. Run the server using the npm start script.
 
 ---
 
-## TODO: Next Steps
+## TODO: Next Steps for Development
 
-- Static File Server: Create a middleware to serve files like images, CSS, and HTML from the disk.
-- Router Benchmarking: Test the speed of the Regex matcher under very high traffic to find bottlenecks.
-- Security Hardening: Add built-in protection for common web attacks like XSS and CSRF.
-- Dependency Injection: Build a way to easily pass database connections or services into the request context.
-- Validation Layer: Add a system to check if incoming data is correct before it reaches the main logic.
+- Performance Benchmarking: Measure the Regex router's speed under high-concurrency loads.
+- Dependency Injection: Implement a clean way to pass database instances into the request context.
+- Input Validation: Create a schema-based validation middleware to verify incoming body data.
+- Automated Testing: Add unit tests for the core Router and Middleware pipeline.
+- CLI Tool: Build a basic "create-arc-app" command to scaffold new projects.
