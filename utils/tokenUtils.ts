@@ -1,4 +1,4 @@
-import { Secret } from "jsonwebtoken";
+import jwt, { Secret, SignOptions } from "jsonwebtoken";
 
 const getSecret = (): Secret => {
   const secret = process.env.JWT_SECRET;
@@ -12,4 +12,14 @@ const getSecret = (): Secret => {
 
 const FINAL_SECRET = getSecret();
 
-export class TokenUtils {}
+export class TokenUtils {
+  static signToken(
+    payload: object,
+    expiresIn: SignOptions["expiresIn"] = "1h",
+  ): string {
+    return jwt.sign(payload, FINAL_SECRET, {
+      expiresIn,
+      algorithm: "HS256",
+    });
+  }
+}
