@@ -37,7 +37,7 @@ app.listen(PORT, () => {
 });
 
 const shutdown = (signal: string) => {
-  console.log(`\n[SYS] ${signal} received. Terminating process cleanly.`);
+  console.log(`\n[Phantekzy] ${signal} received. Terminating process cleanly.`);
   process.exit(0);
 };
 
