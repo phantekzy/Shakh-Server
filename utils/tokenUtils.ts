@@ -22,4 +22,12 @@ export class TokenUtils {
       algorithm: "HS256",
     });
   }
+
+  static verifyToken<T>(token: string): T {
+    try {
+      return jwt.verify(token, FINAL_SECRET) as T;
+    } catch (error) {
+      throw new Error("Invalid authentication token");
+    }
+  }
 }
