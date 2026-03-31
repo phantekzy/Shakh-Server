@@ -35,7 +35,7 @@ export const staticFiles = (
     const filePath = path.join(absoluteRoot, relativePath);
 
     if (!filePath.startsWith(absoluteRoot)) {
-      return next(new HttpError(403, "Forbidden"));
+      return next(new HttpError(403, "Nice Try Diddy !"));
     }
 
     fs.stat(filePath, (err, stats) => {
