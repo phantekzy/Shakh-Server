@@ -1,47 +1,44 @@
 # Arc Web Framework
 
-Arc is a framework for Node.js created to provide a transparent and predictable engine for building APIs. Instead of using high-level libraries like Express, Arc is built from scratch using TypeScript and the native Node.js http module. This gives developers total control over the request-lifecycle and removes the hidden logic found in larger frameworks.
+Arc is a framework built from scratch using Node.js and TypeScript. I created this to have total control over the request lifecycle and to remove the "magic" found in heavy libraries like Express. It is designed to be a transparent, fast, and secure engine for building APIs.
 
-## Core Architecture
+## Core Features
 
-### 1. Regex-Based Routing
-The routing system does not rely on simple string matching. It converts defined paths into regular expressions.
-- Dynamic segments like :id are automatically identified and extracted.
-- It is resilient to complex URL characters including hyphens and dots.
-- Captured parameters are attached directly to the request object for easy access.
+### 1. Unified Middleware Pipeline
+The framework uses a recursive next() function to manage the execution of code.
+- Every request moves through a single "pipe" that contains global middlewares and the final route handler.
+- By using async/await, I ensure that one task (like checking a password) is 100% finished before the next one starts.
+- This design prevents race conditions where multiple handlers try to send a response at the same time.
 
-### 2. Recursive Middleware Pipeline
-The heart of the framework is a linear execution chain managed by a recursive next() function.
-- Every request moves through a series of checkpoints in a strict order.
-- By using asynchronous execution (await), the engine ensures that one task—such as authentication or logging—is fully completed before the next begins.
-- This architecture prevents race conditions and ensures the server state remains predictable.
+### 2. Regex-Based Routing
+I built a custom router that doesn't just look for exact text matches.
+- It converts path patterns (like /users/:id) into Regular Expressions.
+- It is smart enough to handle IDs that contain numbers, hyphens, or dots (like maini-77).
+- It supports optional trailing slashes so both /home and /home/ work correctly.
 
-### 3. Request and Response Wrappers
-To improve the development experience without adding bloat, the native Node.js request and response objects are wrapped in ArcRequest and ArcResponse.
-- It includes a built-in JSON parser that handles incoming data streams safely.
-- It provides a clean API for sending responses using methods like res.status() and res.json().
+### 3. Built-in Security and Parsers
+I wrote custom handlers to process incoming data safely:
+- JSON Parser: Automatically reads JSON bodies but includes a 1MB limit to protect the server's memory from "JSON Bomb" attacks.
+- URL-Encoded Parser: Processes standard HTML form data, decodes URI components, and handles plus signs (+) as spaces.
+- CORS: A built-in system to control which websites are allowed to talk to the API.
 
-### 4. Global Error Boundary
-A centralized safety net is built into the core handler.
-- The entire middleware pipeline is wrapped in a try/catch block.
-- If a route handler or middleware crashes, the error is caught, a 500 status is sent to the user, and the server process remains online.
+### 4. Professional Request/Response Wrappers
+I extended the basic Node.js tools into ArcRequest and ArcResponse.
+- This gives me a clean way to write code using commands like res.status(200).json().
+- It simplifies handling headers, query strings, and URL parameters.
 
-## How It Works
-
-1. A request hits the Node.js http server.
-2. Arc wraps the raw request and response.
-3. The Router matches the URL against defined patterns using Regex.
-4. The Pipeline starts, running global middlewares first, then route-specific handlers.
-5. The next() function moves the request through each step.
-6. The final handler sends the response back to the user.
+### 5. Global Error Boundary
+A safety net is built into the core engine.
+- Every step of the process is wrapped in a try/catch block.
+- If a bug happens in a specific route, the server catches the error, tells the user something went wrong, and stays online for everyone else.
+- It is environment-aware, showing full error details during development but hiding them in production.
 
 ---
 
-## TODO: Next Steps for Development
+## TODO: Next Steps
 
-- Static File Server: Build a middleware to serve images, CSS, and HTML files from the disk.
-- Form Data Parser: Add support for application/x-www-form-urlencoded data to handle standard HTML forms.
-- Router Optimization: Benchmarking the Regex matcher to ensure performance remains high under heavy load.
-- Security Headers: Implement a built-in system to set security headers (HSTS, XSS Protection, CSP).
-- Dependency Injection: Create a clean way to pass database connections or services into the request context.
-- Validation Layer: Integrate a schema-based validation system to check incoming data before it reaches handlers.
+- Static File Server: Create a middleware to serve files like images, CSS, and HTML from the disk.
+- Router Benchmarking: Test the speed of the Regex matcher under very high traffic to find bottlenecks.
+- Security Hardening: Add built-in protection for common web attacks like XSS and CSRF.
+- Dependency Injection: Build a way to easily pass database connections or services into the request context.
+- Validation Layer: Add a system to check if incoming data is correct before it reaches the main logic.
