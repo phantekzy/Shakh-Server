@@ -1,15 +1,16 @@
 {
-  "name": "arc",
-  "version": "1.0.0",
-  "description": "Framework for nodejs",
+  "name": "@phantekzy/arc",
+  "version": "1.0.1",
+  "description": "High-performance strictly-typed HTTP orchestration engine",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
-    "dist/src",
-    "dist/core",
-    "dist/middlewares",
+    "dist",
     "README.md"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "ts-node server.ts",
     "build": "rm -rf dist && tsc",
