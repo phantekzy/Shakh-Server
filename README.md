@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/phantekzy/Arc/main/Arclogo.png" width="250" alt="Arc Logo">
+  <img src="https://raw.githubusercontent.com/phantekzy/Arc/main/Arclogo.png" width="500" alt="Arc Logo">
 </p>
 
 
