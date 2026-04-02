@@ -1,15 +1,20 @@
---------------------------------------------------------------------------------
-ARC WEB FRAMEWORK | VERSION 1.0.2
---------------------------------------------------------------------------------
 
-OVERVIEW
+<p align="center">
+  <img src="https://raw.githubusercontent.com/phantekzy/Arc/main/Arclogo.png" width="250" alt="Arc Logo">
+</p>
+
+
+# ARC WEB FRAMEWORK | VERSION 1.0.2
+---
+
+### OVERVIEW
 Arc is a tool for building web servers with Node.js. I built it from zero 
 using only TypeScript and the basic tools inside Node.js. It has no hidden 
 code and no "magic" libraries. It gives you 100% control over how your 
 website or app talks to the internet.
 
 --------------------------------------------------------------------------------
-HOW TO INSTALL
+### HOW TO INSTALL
 --------------------------------------------------------------------------------
 1. Open your terminal.
 2. Type: npm install @phantekzy/arc
@@ -17,8 +22,9 @@ HOW TO INSTALL
    and add this line: "type": "module"
 
 --------------------------------------------------------------------------------
-QUICK START EXAMPLE
+### QUICK START EXAMPLE
 --------------------------------------------------------------------------------
+```javaScript
 import { Arc } from "@phantekzy/arc";
 const app = new Arc();
 
@@ -34,9 +40,10 @@ app.get("/api/status", (req, res) => {
 app.listen(3000, () => {
   console.log("Arc engine is spinning on port 3000");
 });
+```
 
 --------------------------------------------------------------------------------
-THE ENGINE PARTS (CORE)
+### THE ENGINE PARTS (CORE)
 --------------------------------------------------------------------------------
 Arc takes the raw data from the web and makes it easy to read:
 
@@ -52,18 +59,19 @@ Response Helpers:
 - res.send("<h1>Hello</h1>"): Sends text or HTML directly.
 
 --------------------------------------------------------------------------------
-ROUTING AND DYNAMIC PATHS
+### ROUTING AND DYNAMIC PATHS
 --------------------------------------------------------------------------------
 Arc uses "Regex" logic to find the right page. You can use standard methods 
 like GET (to read), POST (to save), PUT (to update), and DELETE (to remove).
 
 Example of a dynamic path:
+```javaScript
 app.get("/profile/:username", (req, res) => {
   res.send("Welcome " + req.params.username);
 });
-
+```
 --------------------------------------------------------------------------------
-MIDDLEWARE (THE PIPELINE)
+### MIDDLEWARE (THE PIPELINE)
 --------------------------------------------------------------------------------
 Middlewares are like "checkpoints" that a request passes through.
 1. Logger: Records every visit to the console.
@@ -73,7 +81,7 @@ Middlewares are like "checkpoints" that a request passes through.
 You use the next() function to tell Arc to move to the next checkpoint.
 
 --------------------------------------------------------------------------------
-BUILT-IN TOOLS (NO EXTRA NPM INSTALLS NEEDED)
+### BUILT-IN TOOLS (NO EXTRA NPM INSTALLS NEEDED)
 --------------------------------------------------------------------------------
 - jsonParser: Reads JSON data sent to the server.
 - urlencodedParser: Reads data from HTML forms.
@@ -83,19 +91,20 @@ BUILT-IN TOOLS (NO EXTRA NPM INSTALLS NEEDED)
 - staticFiles: Makes it easy to show your HTML, CSS, and Images.
 
 --------------------------------------------------------------------------------
-INPUT VALIDATION (SECURITY)
+### INPUT VALIDATION (SECURITY)
 --------------------------------------------------------------------------------
 You can tell Arc exactly what kind of data you want. If the data is wrong, 
 Arc stops the request immediately to keep your server safe.
 
 Example:
+```javaScript
 const myRule = { name: "string", age: "number" };
 app.post("/add", validate(myRule), (req, res) => {
   res.send("Data is safe!");
 });
-
+```
 --------------------------------------------------------------------------------
-THE PLAN FOR THE FUTURE
+### THE PLAN FOR THE FUTURE
 --------------------------------------------------------------------------------
 I am still building this engine. Next, I will add:
 - Multi-core support: To make it run faster on powerful CPUs.
@@ -105,5 +114,5 @@ I am still building this engine. Next, I will add:
 You are welcome to help! Go to the GitHub link and contribute code.
 
 --------------------------------------------------------------------------------
-GITHUB: github.com/phantekzy/Arc | NPM: @phantekzy/arc
+### GITHUB: github.com/phantekzy/Arc | NPM: @phantekzy/arc
 --------------------------------------------------------------------------------
