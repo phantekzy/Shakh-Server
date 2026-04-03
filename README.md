@@ -1,10 +1,10 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/phantekzy/Arc/main/Arclogo.png" width="700" alt="Arc Logo">
+  <img src="https://raw.githubusercontent.com/phantekzy/Arc/main/Arclogo.png" width="600" alt="Arc Logo">
 </p>
 
 
-# ARC WEB FRAMEWORK | VERSION 1.0.2
+Fast and simple web framework for nodejs
 ---
 
 ### OVERVIEW
