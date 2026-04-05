@@ -10,3 +10,4 @@ export * from "../middlewares/cors";
 export * from "../middlewares/logger";
 export * from "../middlewares/jwtAuth";
 export * from "../middlewares/rateLimiter";
+export * from "../middlewares/cookieParser";

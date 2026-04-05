@@ -2,14 +2,16 @@ import "dotenv/config";
 import path from "path";
 import cluster from "node:cluster";
 import os from "node:os";
-import { Arc } from "./core/app";
-import { cookieParser } from "./middlewares/cookieParser";
-import { cors } from "./middlewares/cors";
-import { jsonParser } from "./middlewares/jsonParser";
-import { logger } from "./middlewares/logger";
-import { rateLimiter } from "./middlewares/rateLimiter";
-import { urlencodedParser } from "./middlewares/urlencodedParser";
-import { staticFiles } from "./middlewares/staticFiles";
+import {
+  Arc,
+  logger,
+  cors,
+  rateLimiter,
+  cookieParser,
+  jsonParser,
+  urlencodedParser,
+  staticFiles,
+} from "./src";
 import { registerUserRoutes } from "./routes/userRoutes";
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
