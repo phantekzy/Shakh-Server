@@ -28,7 +28,7 @@ By focusing on a strictly typed architecture and native performance, Arc provide
 Arc requires Node.js version 18.0.0 or higher.
 
 1. Install the package via NPM:
-```javascript
+```bash
    npm install @phantekzy/arc
 ```
 2. Ensure your project is configured for ECMAScript Modules (ESM) by adding the following to your package.json:
