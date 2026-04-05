@@ -1,5 +1,5 @@
 import "dotenv/config";
-import path from "path";
+import path, { parse } from "path";
 import { Arc } from "./core/app";
 import { cookieParser } from "./middlewares/cookieParser";
 import { cors } from "./middlewares/cors";
@@ -10,7 +10,9 @@ import { urlencodedParser } from "./middlewares/urlencodedParser";
 import { staticFiles } from "./middlewares/staticFiles";
 import { registerUserRoutes } from "./routes/userRoutes";
 
-const app = new Arc();
+const PORT = parseInt(process.env.PORT || "3000", 10);
+
+/* const app = new Arc();
 
 app.use(logger);
 app.use(cors);
@@ -40,4 +42,4 @@ const shutdown = (signal: string) => {
 };
 
 process.on("SIGINT", () => shutdown("SIGINT"));
-process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGTERM", () => shutdown("SIGTERM")); */
