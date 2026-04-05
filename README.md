@@ -104,6 +104,7 @@ The Arc engine is in active development. Future releases will focus on:
 - Automated Testing: Implementation of a comprehensive unit and integration testing suite.
 - Enhanced Telemetry: Internal metrics for monitoring engine performance in real time.
 
-Contributions: Arc is an open source project. Developers are encouraged to submit pull requests or report issues on the official GitHub repository.
+### Contributions: 
+Arc is an open source project. Developers are encouraged to submit pull requests or report issues on the official GitHub repository.
 
 GitHub: github.com/phantekzy/Arc | NPM: @phantekzy/arc
