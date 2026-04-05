@@ -30,7 +30,7 @@ Arc requires Node.js version 18.0.0 or higher.
 
 ### RAPID DEPLOYMENT EXAMPLE
 The following example demonstrates how to initialize the engine and define a protected, validated route.
-
+   ```javascript
 import { Arc, jwtAuth, validate } from "@phantekzy/arc";
 
 const app = new Arc();
@@ -48,9 +48,9 @@ app.post("/api/user", jwtAuth, validate(userSchema), (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Arc engine operational on port ${port}`);
+  console.log(`Arc engine working on port ${port}`);
 });
-
+    ```
 ---
 
 ### CORE ENGINE COMPONENTS
