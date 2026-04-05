@@ -10,5 +10,16 @@ export const validate = (schema: Record<string, string>): Middleware => {
         message: "JSON body is required.",
       });
     }
+
+    const errors: string[] = [];
+    for (const [key, expectedType] of Object.entries(schema)) {
+      if (!(key in body)) {
+        errors.push(`Field '${key}' is missing`);
+      } else if (typeof body[key] !== expectedType) {
+        errors.push(
+          `Field '${key}' expected ${expectedType}, got ${typeof body[key]}`,
+        );
+      }
+    }
   };
 };
