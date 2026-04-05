@@ -11,6 +11,7 @@ import { staticFiles } from "./middlewares/staticFiles";
 import { registerUserRoutes } from "./routes/userRoutes";
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
+const publicPath = path.join(process.cwd(), "public");
 
 /* const app = new Arc();
 
