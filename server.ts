@@ -27,17 +27,15 @@ registerUserRoutes(app);
 const PORT = parseInt(process.env.PORT || "3000", 10);
 app.listen(PORT, () => {
   console.log("-------------------------------------------");
-  console.log(`[Phantekzy] Arc Engine: Operational`);
-  console.log(`[Phantekzy] Endpoint:      http://localhost:${PORT}`);
-  console.log(`[Phantekzy] Static Root:   ${publicPath}`);
-  console.log(
-    `[Phantekzy] Environment:   ${process.env.NODE_ENV || "development"}`,
-  );
+  console.log(`[ARC] Arc Engine: Operational`);
+  console.log(`[ARC] Endpoint:      http://localhost:${PORT}`);
+  console.log(`[ARC] Static Root:   ${publicPath}`);
+  console.log(`[ARC] Environment:   ${process.env.NODE_ENV || "development"}`);
   console.log("-------------------------------------------");
 });
 
 const shutdown = (signal: string) => {
-  console.log(`\n[Phantekzy] ${signal} received. Terminating process cleanly.`);
+  console.log(`\n[ARC] ${signal} received. Terminating process cleanly.`);
   process.exit(0);
 };
 
