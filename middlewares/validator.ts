@@ -15,6 +15,12 @@ export const validate = (schema: Record<string, string>): Middleware => {
         errors.push(`Field '${key}' is missing`);
         continue;
       }
+      const actualType = typeof body[key];
+      if (actualType !== expectedType) {
+        errors.push(
+          `Field '${key}' expected ${expectedType}, got ${actualType}`,
+        );
+      }
     }
   };
 };
