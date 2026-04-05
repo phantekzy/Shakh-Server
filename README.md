@@ -8,6 +8,22 @@ Arc is a lightweight, low level web framework built from scratch using TypeScrip
 It is created for developers who require absolute control over the request lifecycle without the overhead of heavy external dependencies. 
 By focusing on a strictly typed architecture and native performance, Arc provides a robust foundation for building scalable microservices and enterprise applications.
 
+## Table of Contents
+
+* [Installation](#installation)
+* [Features](#key-architectural-features)
+* [Quick Start](#rapid-deployment-example)
+* [Philosophy](#core-philosophy)
+* [Core Components](#core-engine-components)
+* [Middleware Pipeline](#advanced-middleware-pipeline)
+* [Distributed Systems](#distributed-systems-and-clustering)
+* [Roadmap](#project-roadmap)
+* [Contributing](#contributing)
+* [Security Issues](#security-policy)
+* [Running Tests](#running-tests)
+* [Project Team](#current-project-team-members)
+* [License](#license)
+
 ### KEY ARCHITECTURAL FEATURES
 - **Vertical Scalability:** Built in support for Node.js clustering to utilize every CPU core on the host machine.
 - **Strictly Typed Pipeline:** Full TypeScript support for request, response, and middleware objects.
