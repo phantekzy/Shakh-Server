@@ -50,7 +50,7 @@ app.post("/api/user", jwtAuth, validate(userSchema), (req, res) => {
 app.listen(port, () => {
   console.log(`Arc engine working on port ${port}`);
 });
-    ```
+```
 ---
 
 ### CORE ENGINE COMPONENTS
